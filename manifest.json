@@ -1,7 +1,24 @@
 {
-    "name": "test",
-    "version": "1.0.0",
+    "description": "Adds a new panel to the developer tools. The panel contains buttons that demonstrate various basic features of the devtools API",
     "manifest_version": 3,
-    "minimum_chrome_version": "10.0",
-    "devtools_page": "devtools.html"
+    "name": "devtools_panels",
+    "version": "1.0.0",
+    "author": "Christophe Villeneuve",
+    "icons": {
+        "48": "pedroPascal-removebg-preview.png"
+    },
+
+    "background": {
+        "service_worker": "background_scripts/background.js"
+    },
+
+    "permissions": [
+        "contextMenus",
+        "tabs",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": ["<all_urls>"],
+
+    "devtools_page": "devtools/devtools.html"
 }

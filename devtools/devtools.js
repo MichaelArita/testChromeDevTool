@@ -1,3 +1,15 @@
 console.log('Hey I am from devtools');
 
-chrome.devtools.panels.create('Test Panel', '', 'index.html', () => {});
+function handleShown() {
+  console.log('panel is being shown');
+}
+
+function handleHidden() {
+  console.log('panel is being hidden');
+}
+
+chrome.devtools.panels.create('Test Panel', '', '/devtools/panel/panel.html', () => {})
+  .then((newPanel) => {
+    newPanel.onShown.addListener(handleShown);
+    newPanel.onHidden.addListener(handleHidden);    
+  });
