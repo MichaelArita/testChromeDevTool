@@ -1,0 +1,11 @@
+# General
+.DS_Store
+
+# Dependencies
+node_modules
+
+# Output from webpack
+extension/bundles/
+
+# VScode configs
+.vscode
