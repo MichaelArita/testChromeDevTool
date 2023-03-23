@@ -8,7 +8,7 @@ function handleHidden() {
   console.log('panel is being hidden');
 }
 
-chrome.devtools.panels.create('Test Panel', '', '/devtools/panel/panel.html', () => {
-  newPanel.onShown.addListener(handleShown);
-  newPanel.onHidden.addListener(handleHidden);  
+chrome.devtools.panels.create('Test Panel', '', '/devtools/panel/panel.html', (panel) => {
+  panel.onShown.addListener(handleShown);
+  panel.onHidden.addListener(handleHidden);  
 });
