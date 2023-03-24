@@ -2,12 +2,13 @@
 import { render } from "react-dom";
 import React, { useState, useEffect } from 'react';
 
-
 // Import our components
 import Board from './Components/Board.jsx';
+import TestView from './Components/TestView.jsx';
 
 function App() {
   const [port, setPort] = useState(null);
+  const [appView, setAppView] = useState(1);
 
   useEffect(() => {
     connectToBackgroundScript();
@@ -46,12 +47,31 @@ function App() {
     console.log('dev tool received message from background:', msg.message);
   };
 
-  return (
-    <div className="container">
-      <h1>Tic Tac Toe</h1>
-      <Board sendMsgToBG={sendMessageToBackground} />
-    </div>
-  );
+  const onSwitchViewBtnClick = () => {
+    if (appView === 1) {
+      setAppView(2);
+    } else {
+      setAppView(1);
+    }
+  };
+
+  if (appView === 1) {
+    return (
+      <div className="container">
+        <button onClick={onSwitchViewBtnClick}>Switch View</button>
+        <h1>Tic Tac Toe</h1>
+        <Board sendMsgToBG={sendMessageToBackground} />
+      </div>
+    );
+  } else {
+    return (
+      <div className="container">
+        <button onClick={onSwitchViewBtnClick}>Switch View</button>
+        <TestView />
+      </div>
+    );
+  }
+
 }
 
 export default App;
