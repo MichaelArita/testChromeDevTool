@@ -8,6 +8,20 @@ class Tab {
   }
 }
 
+const onMessageFromDevTool = msg => {
+  console.log('background.js received a message from the dev tool:', msg.message);
+  sendMessageToContentScript(msg.message);
+}
+
+const sendMessageToDevTool = msg => {
+  if (portsArr.length === 0) {
+    console.log('background.js: no ports to send message to!');
+    return;
+  }
+  console.log('background.js sending message to dev tool:', msg);
+  portsArr[0].postMessage({message: msg});
+}
+
 const handleMessageFromContentScript = (request, sender, sendResponse) => { 
   console.log('background.js received message:', request.message);
 
@@ -17,12 +31,12 @@ const handleMessageFromContentScript = (request, sender, sendResponse) => {
 }
 
 const sendMessageToContentScript = msg => {
-  if (tab === undefined) {
+  if (currentTab === undefined) {
     console.log('background.js: no tab to send message to');
     return;
   }
   console.log('background.js sending message to content.js:', msg);
-  chrome.tabs.sendMessage(tab.tabId, msg);
+  chrome.tabs.sendMessage(currentTab.tabId, msg);
 }
 
 /**
