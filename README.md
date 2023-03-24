@@ -4,7 +4,7 @@
 
 ## What it does ##
 
-This extension adds a new panel to the developer tools. The panel contains four buttons:
+This is a test. This extension adds a new panel to the developer tools. The panel contains four buttons:
 
 * **Inspect H1**: this injects a script into the active page. The script uses the [`inspect()` helper function](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/devtools.inspectedWindow/eval#Helpers) to select the first &lt;h1&gt; element in the page in the devtools inspector.
 
